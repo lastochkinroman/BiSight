@@ -62,7 +62,8 @@ const ChatBot = () => {
 
       try {
         // Отправляем ИНН на сервер
-        const response = await axios.post('http://localhost:5000/api/chat', { inn: innToSend });
+        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+        const response = await axios.post(`${apiBaseUrl}/api/chat`, { inn: innToSend });
         const botMessage = {
           id: messages.length + 2,
           text: response.data.reply,
